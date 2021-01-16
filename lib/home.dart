@@ -7,11 +7,17 @@ import 'package:http/http.dart' as http;
 import 'package:connectivity/connectivity.dart';
 import 'package:zartektest/appdrawer.dart';
 class Home extends StatefulWidget {
+  final String uid;
+
+  Home({Key key, @required this.uid}) : super(key: key);
+
   @override
-  _HomeState createState() => _HomeState();
+  _HomeState createState() => _HomeState(uid);
 }
 
 class _HomeState extends State<Home> {
+  final String uid;
+  _HomeState(this.uid);
   PageController _pageController;
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
   List cat_news,catNews;

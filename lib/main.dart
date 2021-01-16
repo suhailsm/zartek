@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:zartektest/home.dart';
-import 'package:zartektest/login.dart';
 import 'package:zartektest/signinpage.dart';
-import 'package:zartektest/tasks.dart';
 
 void main() {
   runApp(MyApp());
@@ -37,7 +35,7 @@ class _HomePageState extends State<HomePage> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           FirebaseUser user = snapshot.data;
-          return TasksPage(uid: user.uid);
+          return Home(uid: user.uid);
         } else {
           return SignUpScreen();
         }

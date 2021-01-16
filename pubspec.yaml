@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.1
   http: ^0.12.0+4
   connectivity:
+  shared_preferences:
     #Firebase
   firebase_core: ^0.4.5
   firebase_auth: ^0.16.0

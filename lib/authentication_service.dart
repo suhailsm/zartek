@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 FirebaseAuth auth = FirebaseAuth.instance;
 final gooleSignIn = GoogleSignIn();
@@ -43,6 +44,8 @@ Future<bool> googleSignIn() async {
     AuthResult result = await auth.signInWithCredential(credential);
 
     FirebaseUser user = await auth.currentUser();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('uid', user.uid);
     print(user.uid);
 
     return Future.value(true);
@@ -57,6 +60,8 @@ Future<FirebaseUser> signin(
     AuthResult result =
     await auth.signInWithEmailAndPassword(email: email, password: email);
     FirebaseUser user = result.user;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('uid', user.uid);
     // return Future.value(true);
     return Future.value(user);
   } catch (e) {
@@ -97,6 +102,8 @@ Future<FirebaseUser> signUp(
     AuthResult result = await auth.createUserWithEmailAndPassword(
         email: email, password: email);
     FirebaseUser user = result.user;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('uid', user.uid);
     return Future.value(user);
     // return Future.value(true);
   } catch (error) {
